@@ -3,6 +3,9 @@ interface IProduct {
 }
 
 export async function GET() {
+  await new Promise((resolve) => {
+    setTimeout(resolve, 1000);
+  });
   const response = await fetch(
     "https://xesque.rocketseat.dev/platform/1698253675111-attachment.json"
   );
