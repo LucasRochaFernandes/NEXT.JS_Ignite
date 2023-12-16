@@ -1,5 +1,7 @@
 import { api } from "@/app/data/api";
 import { Product } from "@/app/data/types/product";
+import { AddToCartButton } from "@/components/add-to-cart-button";
+import { Metadata } from "next";
 import Image from "next/image";
 
 interface IProductProps {
@@ -19,6 +21,21 @@ async function getProduct(slug: string): Promise<Product> {
 
   return product;
 }
+
+export async function generateMetadata({
+  params,
+}: IProductProps): Promise<Metadata> {
+  const product = await getProduct(params.slug);
+  return {
+    title: product.title,
+  };
+}
+
+// export function generateStaticParams(){
+//   return [
+//     { slug: 'moletom-never-stop-learning'}
+//   ]
+// }
 
 export default async function ProductPage({ params }: IProductProps) {
   const product = await getProduct(params.slug);
@@ -85,12 +102,7 @@ export default async function ProductPage({ params }: IProductProps) {
             </button>
           </div>
         </div>
-        <button
-          type="button"
-          className="mt-8 flex h-12 items-center justify-center rounded-full bg-emerald-600 font-semibold text-white"
-        >
-          Adicionar ao carrinho
-        </button>
+        <AddToCartButton productId={product.id} />
       </div>
     </div>
   );
