@@ -1,8 +1,8 @@
-import Link from "next/link";
-import Image from "next/image";
+import Link from 'next/link'
+import Image from 'next/image'
 
-import { CartWidget } from "./cart-widget";
-import {SearchForm} from "./search-form";
+import { CartWidget } from './cart-widget'
+import { SearchForm } from './search-form'
 
 export function Header() {
   return (
@@ -28,5 +28,5 @@ export function Header() {
         </Link>
       </div>
     </div>
-  );
+  )
 }

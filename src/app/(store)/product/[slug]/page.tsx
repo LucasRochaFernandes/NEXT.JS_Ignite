@@ -1,13 +1,13 @@
-import { api } from "@/app/data/api";
-import { Product } from "@/app/data/types/product";
-import { AddToCartButton } from "@/components/add-to-cart-button";
-import { Metadata } from "next";
-import Image from "next/image";
+import { api } from '@/app/data/api'
+import { Product } from '@/app/data/types/product'
+import { AddToCartButton } from '@/components/add-to-cart-button'
+import { Metadata } from 'next'
+import Image from 'next/image'
 
 interface IProductProps {
   params: {
-    slug: string;
-  };
+    slug: string
+  }
 }
 
 async function getProduct(slug: string): Promise<Product> {
@@ -15,20 +15,20 @@ async function getProduct(slug: string): Promise<Product> {
     next: {
       revalidate: 60 * 60, // 1 hour
     },
-  });
+  })
 
-  const product = await response.json();
+  const product = await response.json()
 
-  return product;
+  return product
 }
 
 export async function generateMetadata({
   params,
 }: IProductProps): Promise<Metadata> {
-  const product = await getProduct(params.slug);
+  const product = await getProduct(params.slug)
   return {
     title: product.title,
-  };
+  }
 }
 
 // export function generateStaticParams(){
@@ -38,7 +38,7 @@ export async function generateMetadata({
 // }
 
 export default async function ProductPage({ params }: IProductProps) {
-  const product = await getProduct(params.slug);
+  const product = await getProduct(params.slug)
 
   return (
     <div className="relative grid max-h-[860px] grid-cols-3">
@@ -58,18 +58,18 @@ export default async function ProductPage({ params }: IProductProps) {
         </p>
         <div className="mt-8 flex items-center gap-3">
           <span className="inline-block rounded-full bg-violet-500 px-5 py-2.5 font-semibold">
-            {product.price.toLocaleString("pt-BR", {
-              style: "currency",
-              currency: "BRL",
+            {product.price.toLocaleString('pt-BR', {
+              style: 'currency',
+              currency: 'BRL',
               minimumFractionDigits: 0,
               maximumFractionDigits: 0,
             })}
           </span>
           <span className="text-sm text-sinc-400">
-            Em 12x sem juros de{" "}
-            {(product.price / 12).toLocaleString("pt-BR", {
-              style: "currency",
-              currency: "BRL",
+            Em 12x sem juros de{' '}
+            {(product.price / 12).toLocaleString('pt-BR', {
+              style: 'currency',
+              currency: 'BRL',
             })}
           </span>
         </div>
@@ -105,5 +105,5 @@ export default async function ProductPage({ params }: IProductProps) {
         <AddToCartButton productId={product.id} />
       </div>
     </div>
-  );
+  )
 }

@@ -1,15 +1,15 @@
 'use client'
 
-import { useCart } from "@/contexts/cart-context";
+import { useCart } from '@/contexts/cart-context'
 
 interface AddToCartButtonProps {
-  productId: number;
+  productId: number
 }
 
 export function AddToCartButton({ productId }: AddToCartButtonProps) {
-  const { addToCart } = useCart();
+  const { addToCart } = useCart()
   function handleAddProductToCart() {
-    addToCart(productId);
+    addToCart(productId)
   }
   return (
     <button
@@ -19,5 +19,5 @@ export function AddToCartButton({ productId }: AddToCartButtonProps) {
     >
       Adicionar ao carrinho
     </button>
-  );
+  )
 }
