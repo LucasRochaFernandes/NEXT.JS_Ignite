@@ -3,6 +3,6 @@
 Ecommerce - Web application based on the concepts of Next App Router
 
 
-### To run this project, you can execute the command below:
+### To run this project, you can execute the commands below:
   ```bash
-  npm run dev
+  npm i && npm run dev
