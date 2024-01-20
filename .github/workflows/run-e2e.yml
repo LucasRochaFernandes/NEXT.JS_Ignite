@@ -1,0 +1,28 @@
+name: Run E2E tests
+
+on: push 
+
+jobs: 
+  cypress-run:
+    runs-on: ubuntu-22.04
+    steps:
+      # Copia nosso projeto
+      - name: Checkout
+        uses: actions/checkout@v4
+    
+      - name: Install Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 18
+
+      - name: Install Dependencies
+        uses: npm i
+
+      - name: Cypress run
+        uses: cypress-io/github-action@v6
+        env:
+          NEXT_PUBLIC_API_BASE_URL: 'https://devstore-api-test.vercel.app'
+          APP_URL: 'https://localhost:3000'
+        with:
+          build: npm run build
+          start: npm start 
