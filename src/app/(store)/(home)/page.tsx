@@ -13,7 +13,7 @@ async function getFeaturedProducts(): Promise<Product[]> {
 
   const products = await response.json()
 
-  return products.products
+  return products
 }
 
 export const metadata: Metadata = {

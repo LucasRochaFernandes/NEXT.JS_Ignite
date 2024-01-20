@@ -11,7 +11,7 @@ interface IProductProps {
 }
 
 async function getProduct(slug: string): Promise<Product> {
-  const response = await api(`/product/${slug}`, {
+  const response = await api(`/products/${slug}`, {
     next: {
       revalidate: 60 * 60, // 1 hour
     },
